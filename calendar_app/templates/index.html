@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}<title>Local Library</title>{% endblock %}
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Add additional CSS in static file -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+  <h2>Calendar Planner</h2>
+
+
+          <form name="form" action="/create/" method="post" onsubmit="required()">
+              <label for="dt">Date: </label>
+              <input id="dt" type="date" max="2020-12-31" min="2020-01-01" name="day" value="{{ day }}">
+              <label for="note">Note: </label>
+              <input id="note" type="text" name="note" value="{{ note }}">
+              <label for="start">Start Time: </label>
+              <input id="start" type="time" name="start" value="{{ start }}">
+              <label for="end">End Time: </label>
+              <input id="end" type="time" name="end" value="{{ end }}">
+    {% csrf_token %}
+    {{ form }}
+              <input type="submit" name="new_customer" value="Create New Event" />
+</form>
+
+
+
+        <form class = "form" action="/" method="post">
+<button type="submit" value="{{ month }}" name="month">Next Month</button>
+
+            {% csrf_token %}
+            </form>
+    {{ calendar }}
+
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
