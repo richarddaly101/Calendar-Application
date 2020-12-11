@@ -20,11 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '6zn_@$onkq+4y(z6b@22m^h8u^khq4#!^_g0_h9!$26q(s28ks'
+SECRET_KEY = '**********'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#Below list is populated with IP address to allow deployment of app on EC2 instance
 ALLOWED_HOSTS = []
 
 

@@ -7,10 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
    <!-- Add additional CSS in static file -->
   {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
-  <h2>Calendar Planner</h2>
+  <h1>Calendar Planner</h1>
 
 
           <form name="form" action="/create/" method="post" onsubmit="required()">
@@ -27,11 +29,11 @@
               <input type="submit" name="new_customer" value="Create New Event" />
 </form>
 
-
+<br>
 
         <form class = "form" action="/" method="post">
 <button type="submit" value="{{ month }}" name="month">Next Month</button>
-
+<br><br>
             {% csrf_token %}
             </form>
     {{ calendar }}

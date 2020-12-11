@@ -7,14 +7,12 @@ from datetime import datetime as dt,timedelta
 import datetime
 
 
-# Create your views here.
-
 def index(request):
-    """Serve homepage page"""
+    """Serve homepage, every operation results in redirect to this page with updated database objects"""
     events = Event.objects.all()
     today = dt.today()
     year=today.year
-    print(request.method)
+    #if post method sent go to next month per user request
     if request.method == 'POST':
         month=request.POST.get('month')
         month=int(month)
@@ -36,22 +34,23 @@ def index(request):
 
 
 
-#2020-11-15
 def create(request):
+    """Function invoked when user wishes to create new event"""
     form = Create_Event(request.POST)
     if form.is_valid():
         #create http response object
-        print("form valid")
         day=form.cleaned_data['day']
         note = form.cleaned_data['note']
         start=form.cleaned_data['start']
         end = form.cleaned_data['end']
         form.save()
+        #redirect to homepage
         return redirect('/')
     else:
         return HttpResponse("""Error in form input, please try again""")
 
 def update(request,event_id):
+    """Function invoked when user updates an existing event"""
     event=Event.objects.get(id = event_id)
     if request.method == 'POST':
         form = Create_Event(request.POST, request.FILES, instance=event)
@@ -59,7 +58,7 @@ def update(request,event_id):
             print('valid in update')
             form.save()
             return redirect('/')
-    #below if if GET request so just output form with fields filled
+    #below if GET request received so just output form with fields filled
     else:
         form = Create_Event(instance=event)
         return render(request, 'update.html',context={'form':form,'event':event})
@@ -67,6 +66,7 @@ def update(request,event_id):
 
 
 def delete(request,event_id):
+    """Function invoked when user deletes an existing event"""
     event=Event.objects.get(id = event_id)
     event.delete()
     return redirect('/')

@@ -2,8 +2,8 @@ from django.db import models
 from datetime import date
 from calendar import HTMLCalendar
 
-# Create your models here.
 class Event(models.Model):
+    """Class to define model fields for event object stored in database"""
     day = models.DateField(u'Day of the event', help_text=u'Day of the event',blank=False)
     note = models.TextField(u'Textual Notes', help_text=u'Notes', blank=False)
     start = models.TimeField(u'Starting time', help_text=u'Starting time',blank=False)
@@ -14,10 +14,8 @@ class Event(models.Model):
         verbose_name = u'Scheduling'
         verbose_name_plural = u'Scheduling'
 
-    def get_fields(self):
-        return [(field.name, field.value_to_string(self)) for field in Event._meta.fields]
-
 class Calendar(HTMLCalendar):
+    """Class to define calendar object where events object appear for each month"""
     def __init__(self, year=None, month=None):
         self.year = year
         self.month = month
