@@ -1,5 +1,4 @@
 from django.db import models
-from datetime import date
 from calendar import HTMLCalendar
 
 class Event(models.Model):
@@ -8,7 +7,6 @@ class Event(models.Model):
     note = models.TextField(u'Textual Notes', help_text=u'Notes', blank=False)
     start = models.TimeField(u'Starting time', help_text=u'Starting time',blank=False)
     end = models.TimeField(u'Final time', help_text=u'Final time',blank=False)
-
 
     class Meta:
         verbose_name = u'Scheduling'
